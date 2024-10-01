@@ -1,4 +1,5 @@
 # THREEJS-WEBPACK-BOILERPLATE
+npm + typescript + webpack
 
 ## Quick guide
 
