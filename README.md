@@ -1,6 +1,8 @@
 # THREEJS-WEBPACK-BOILERPLATE
 npm + typescript + webpack
 
+Change the `name` and `description` in `package.json`.
+
 ## Quick guide
 
 ### Install dependencies (only the first time)
