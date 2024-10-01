@@ -4,10 +4,7 @@ import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
 export class App {
   scene: THREE.Scene
   renderer: THREE.WebGLRenderer
-  pad?: Gamepad
-  topics?: []
   camera: THREE.PerspectiveCamera
-  current: number = 0
   cube: THREE.Mesh
   controls: OrbitControls
   
