@@ -57,6 +57,7 @@ module.exports = {
             patterns: [
                 { from: './public/css', to: 'css' },
                 { from: './public/fonts', to: 'fonts' },
+                { from: './public/favicon.ico', to: 'favicon.ico' },
                 { from: './public/index.html', to: 'index.html' }
             ]
         })
