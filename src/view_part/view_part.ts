@@ -5,7 +5,7 @@ export class ViewPart {
   }
 
   init(): Promise<void> {
-    return new Promise((res, rej) => {
+    return new Promise((res, _) => {
       setTimeout(() => {
         // this.started = true
         res()

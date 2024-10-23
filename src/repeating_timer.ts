@@ -5,7 +5,7 @@ export class RepeatingTimer {
   
     start(): void {
       if (!this.timerId) {
-        this.timerId = setInterval(this.callback);
+        this.timerId = setInterval(this.callback, this.delay);
       }
     }
   
