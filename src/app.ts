@@ -1,53 +1,22 @@
-import * as THREE from 'three'
-import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
+import { Control } from './control'
 
 export class App {
-  scene: THREE.Scene
-  renderer: THREE.WebGLRenderer
-  camera: THREE.PerspectiveCamera
-  cube: THREE.Mesh
-  controls: OrbitControls
+  control: Control
   
   constructor() {
-    this.scene = new THREE.Scene()
-    this.renderer = new THREE.WebGLRenderer()
-    this.renderer.setSize(window.innerWidth, window.innerHeight)
-    document.body.appendChild(this.renderer.domElement)
-
-    this.camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 100)
-    this.camera.position.z = 2
-
-    this.controls = new OrbitControls(this.camera, this.renderer.domElement)
-
-    const geometry = new THREE.BoxGeometry()
-    const material = new THREE.MeshBasicMaterial({
-        color: 0x00ff00,
-        wireframe: true,
-    })
-    this.cube = new THREE.Mesh(geometry, material)
-    this.scene.add(this.cube)
+    this.control = new Control()
   }
 
   render() {
-    this.renderer.render(this.scene, this.camera)
+    this.control.render()
   }
 
   public init() {
-    this.renderer.setSize( window.innerWidth, window.innerHeight )
-    document.getElementById( 'container' )!.appendChild( this.renderer.domElement );
-
-    window.addEventListener( 'resize', () => {
-			this.camera.aspect = window.innerWidth / window.innerHeight
-			this.camera.updateProjectionMatrix()
-			this.renderer.setSize( window.innerWidth, window.innerHeight )
-			this.render()
-		}, false )
+    this.control.init()
   }
 
   update(): void {
-    this.cube.rotation.x += 0.01
-    this.cube.rotation.y += 0.01
-    this.controls?.update()
+    this.control.update()
     this.render()
   }
 }
