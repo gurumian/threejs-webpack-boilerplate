@@ -4,9 +4,9 @@ import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
 import { CSS3DRenderer } from 'three/examples/jsm/renderers/CSS3DRenderer'
 import * as TWEEN from '@tweenjs/tween.js';
 import EventEmitter from 'events';
+import Stats from 'three/examples/jsm/libs/stats.module.js';
 
-const css3d_support: boolean = false
-
+const is_dev_mode: boolean = (process.env.NODE_ENV === "development")
 
 export class Control extends EventEmitter{
   scene: THREE.Scene
@@ -22,9 +22,21 @@ export class Control extends EventEmitter{
   is_control_started: boolean = false
 
   element: HTMLElement | null = null
+  css3d_support: boolean = false
+
+  stats: any
+
+  
 
   constructor() {
     super()
+
+    console.log(process.env.NODE_ENV)
+    if(is_dev_mode) {
+      this.stats = new Stats();
+      document.body.appendChild( this.stats.dom );
+    }
+
     this.scene = new THREE.Scene()
     this.scene.background = new THREE.Color(0x666666)
     this.scene.fog = new THREE.Fog(new THREE.Color(0x666666), 1000, 50000)
@@ -46,7 +58,7 @@ export class Control extends EventEmitter{
     // this.renderer.shadowMap.enabled = true
     // this.renderer.setSize( window.innerWidth, window.innerHeight );
     
-    if(css3d_support) {
+    if(this.css3d_support) {
       this.css3d_renderer = new CSS3DRenderer
       this.css3d_renderer.setSize(window.innerWidth, window.innerHeight)
       this.css3d_renderer.domElement.style.position = 'absolute'
@@ -85,9 +97,6 @@ export class Control extends EventEmitter{
       this.is_control_started = false
       this.emit('dragend')
     });
-
-    // this.view_part = new DefaultViewPart(this)
-    // this.view_part.init()
   }
 
   render() {
@@ -125,6 +134,8 @@ export class Control extends EventEmitter{
     if(!this.is_control_started) TWEEN.update()
     this.controls?.update()
     // this.view_part.update()
+
+    if(is_dev_mode) this.stats.update();
     this.render()
   }
 
