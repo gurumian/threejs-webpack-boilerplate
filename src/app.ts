@@ -1,22 +1,34 @@
-import { Control } from './control'
+import { Parts } from './view_part/parts'
+import { Router } from './router'
+import { DefaultViewPart } from './view_part/default_view_part'
+
+export enum State {
+  none,
+  prepared,
+  started,
+  stopped,
+  paused
+}
 
 export class App {
-  control: Control
+  router: Router
   
   constructor() {
-    this.control = new Control()
-  }
-
-  render() {
-    this.control.render()
+    this.router = Router.getInstance()
   }
 
   public init() {
-    this.control.init()
+    this.router.init()
+    this.router.register(Parts.default, new DefaultViewPart(this.router.control))
+
+    this.router.requestStart(Parts.default)
+  }
+  render() {
+    this.router.control.render()
   }
 
   update(): void {
-    this.control.update()
+    this.router.update()
     this.render()
   }
 }

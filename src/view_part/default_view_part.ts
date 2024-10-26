@@ -36,4 +36,12 @@ export class DefaultViewPart extends ViewPart {
     this.cube.rotation.y += 0.01
     super.update()
   }
+
+  onstart(args?: any) {
+    console.log(args)
+  }
+
+  onstop(args?: any) {
+    console.log(args)
+  }
 }

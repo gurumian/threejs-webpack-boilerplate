@@ -1,6 +1,6 @@
 import * as THREE from 'three'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
-import { DefaultViewPart } from './view_part/default_view_part'
+// import { DefaultViewPart } from './view_part/default_view_part'
 import { CSS3DRenderer } from 'three/examples/jsm/renderers/CSS3DRenderer'
 import * as TWEEN from '@tweenjs/tween.js';
 import EventEmitter from 'events';
@@ -17,7 +17,7 @@ export class Control extends EventEmitter{
   //   cube: THREE.Mesh
   controls: OrbitControls
 
-  view_part: DefaultViewPart
+  // view_part: DefaultViewPart
 
   is_control_started: boolean = false
 
@@ -67,8 +67,8 @@ export class Control extends EventEmitter{
     // this.camera.position.y = 10
     // this.camera.position.z = 60
     this.camera.position.x = 0
-    this.camera.position.y = 0
-    this.camera.position.z = 5
+    this.camera.position.y = 10
+    this.camera.position.z = 70
 
     this.controls = new OrbitControls(this.camera, this.renderer.domElement)
     this.controls.enableDamping = true // Add smooth damping effect
@@ -76,18 +76,18 @@ export class Control extends EventEmitter{
 
     this.controls.maxPolarAngle = Math.PI / 2 - 0.1 ;
     this.controls.addEventListener('start', () => {
-      console.log('start! control')
+      // stopCameraAnimation();
       this.is_control_started = true
       this.emit('dragstart')
     });
     this.controls.addEventListener('end', () => {
-      console.log('end! control')
+      // stopCameraAnimation();
       this.is_control_started = false
       this.emit('dragend')
     });
 
-    this.view_part = new DefaultViewPart(this)
-    this.view_part.init()
+    // this.view_part = new DefaultViewPart(this)
+    // this.view_part.init()
   }
 
   render() {
@@ -114,15 +114,17 @@ export class Control extends EventEmitter{
       this.render()
     }, false)
 
-    window.addEventListener('keydown', (event) => {
-      this.view_part.onkeydown(event)
-    }, false)
+    // window.addEventListener('keydown', (event) => {
+    //   this.view_part.onkeydown(event)
+    // }, false)
   }
 
   update(): void {
+    // this.cube.rotation.x += 0.01
+    // this.cube.rotation.y += 0.01
     if(!this.is_control_started) TWEEN.update()
     this.controls?.update()
-    this.view_part.update()
+    // this.view_part.update()
     this.render()
   }
 
