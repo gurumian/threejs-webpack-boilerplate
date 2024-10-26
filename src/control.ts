@@ -14,15 +14,12 @@ export class Control extends EventEmitter{
   css3d_renderer?: CSS3DRenderer
 
   camera: THREE.PerspectiveCamera
-  //   cube: THREE.Mesh
   controls: OrbitControls
-
-  // view_part: DefaultViewPart
 
   is_control_started: boolean = false
 
   element: HTMLElement | null = null
-  css3d_support: boolean = false
+  css3d_support: boolean = true
 
   stats: any
 
@@ -122,19 +119,12 @@ export class Control extends EventEmitter{
       this.renderer.setSize(window.innerWidth, window.innerHeight)
       this.render()
     }, false)
-
-    // window.addEventListener('keydown', (event) => {
-    //   this.view_part.onkeydown(event)
-    // }, false)
   }
 
   update(): void {
-    // this.cube.rotation.x += 0.01
-    // this.cube.rotation.y += 0.01
     if(!this.is_control_started) TWEEN.update()
     this.controls?.update()
-    // this.view_part.update()
-
+    
     if(is_dev_mode) this.stats.update();
     this.render()
   }
