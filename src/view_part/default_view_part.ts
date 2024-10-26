@@ -2,6 +2,7 @@ import * as THREE from 'three'
 import { ViewPart } from "./view_part";
 import { Light } from '../widget/light';
 import { Control } from '../control';
+import { CSS3DObject } from 'three/examples/jsm/renderers/CSS3DRenderer';
 
 export class DefaultViewPart extends ViewPart {
   light?: Light
@@ -20,6 +21,8 @@ export class DefaultViewPart extends ViewPart {
     })
     this.cube = new THREE.Mesh(geometry, material)
     this.control.scene.add(this.cube)
+
+    this.createCSSObject()
   }
 
   async init(): Promise<void> {
@@ -43,5 +46,17 @@ export class DefaultViewPart extends ViewPart {
 
   onstop(args?: any) {
     console.log(args)
+  }
+
+  private createCSSObject(): void {
+    const element = document.createElement( 'div' );
+    element.className = 'element';
+    element.innerHTML = "Test"
+
+    const objectCSS = new CSS3DObject( element );
+    objectCSS.position.x = 0;
+    objectCSS.position.y = 0;
+    objectCSS.position.z = -1000;
+    this.control.scene.add( objectCSS );
   }
 }

@@ -77,7 +77,7 @@ export class Control extends EventEmitter{
     // this.camera.position.z = 60
     this.camera.position.x = 0
     this.camera.position.y = 10
-    this.camera.position.z = 70
+    this.camera.position.z = 100
 
     this.controls = new OrbitControls(this.camera, this.renderer.domElement)
     this.controls.enableDamping = true // Add smooth damping effect
@@ -97,8 +97,9 @@ export class Control extends EventEmitter{
   }
 
   render() {
-    if(this.css3d_renderer)
+    if(this.css3d_renderer) {
       this.css3d_renderer.render(this.scene, this.camera)
+    }
 
     this.renderer.render(this.scene, this.camera)
   }
@@ -108,6 +109,10 @@ export class Control extends EventEmitter{
     
     if(this.element) {
       this.element.appendChild(this.renderer.domElement)
+
+      if(this.css3d_support && this.css3d_renderer) {
+        this.element.appendChild(this.css3d_renderer.domElement)
+      }
     }
     else {
       console.warn(`container doesn't exist`)
