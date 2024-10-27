@@ -101,10 +101,15 @@ export class ComputeAttractorParticles {
       attractor.controls.enabled = attractor.controls.visible;
       this.control.scene.add( attractor.controls.getHelper() );
   
-      attractor.controls.addEventListener( 'dragging-changed', ( event: Event ) => {
+      // Define the event interface
+      interface TransformControlsDraggingChangedEvent {
+        type: 'dragging-changed';
+        target: TransformControls;
+        value: boolean;
+      }
 
-        // controls.enabled = ! event.value;
-  
+      attractor.controls.addEventListener( 'dragging-changed', ( event: TransformControlsDraggingChangedEvent ) => {
+        this.control.controls.enabled = ! event.value;
       } );
   
       attractor.controls.addEventListener( 'change', () => {
