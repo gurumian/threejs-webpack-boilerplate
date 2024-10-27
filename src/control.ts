@@ -1,7 +1,7 @@
 import * as THREE from 'three'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
 // import { DefaultViewPart } from './view_part/default_view_part'
-import { CSS3DRenderer } from 'three/examples/jsm/renderers/CSS3DRenderer'
+import { CSS3DRenderer } from 'three/examples/jsm/renderers/CSS3DRenderer.js'
 import * as TWEEN from '@tweenjs/tween.js';
 import EventEmitter from 'events';
 import Stats from 'three/examples/jsm/libs/stats.module.js';

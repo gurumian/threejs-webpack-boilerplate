@@ -2,7 +2,7 @@ import * as THREE from 'three'
 import { ViewPart } from "./view_part";
 import { Light } from '../widget/light';
 import { Control } from '../control';
-import { CSS3DObject } from 'three/examples/jsm/renderers/CSS3DRenderer';
+import { CSS3DObject } from 'three/examples/jsm/renderers/CSS3DRenderer.js';
 
 export class DefaultViewPart extends ViewPart {
   light?: Light
