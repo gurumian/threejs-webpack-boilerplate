@@ -1,4 +1,4 @@
-import * as THREE from 'three'
+import * as THREE from 'three/tsl'
 import { ViewPart } from "./view_part";
 import { Light } from '../widget/light';
 import { Control } from '../control';

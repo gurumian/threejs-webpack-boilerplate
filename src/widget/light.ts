@@ -1,4 +1,4 @@
-import * as THREE from 'three'
+import * as THREE from 'three/tsl'
 
 const enable_light_helper: boolean = false
 
