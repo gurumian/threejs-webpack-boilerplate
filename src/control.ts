@@ -1,6 +1,5 @@
-import * as THREE from 'three'
+import * as THREE from 'three/tsl'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
-// import { DefaultViewPart } from './view_part/default_view_part'
 import { CSS3DRenderer } from 'three/examples/jsm/renderers/CSS3DRenderer.js'
 import * as TWEEN from '@tweenjs/tween.js';
 import EventEmitter from 'events';
@@ -10,7 +9,7 @@ const is_dev_mode: boolean = (process.env.NODE_ENV === "development")
 
 export class Control extends EventEmitter{
   scene: THREE.Scene
-  renderer: THREE.WebGLRenderer
+  renderer: THREE.WebGPURenderer
   css3d_renderer?: CSS3DRenderer
 
   camera: THREE.PerspectiveCamera
@@ -39,7 +38,7 @@ export class Control extends EventEmitter{
     this.scene.fog = new THREE.Fog(new THREE.Color(0x666666), 1000, 50000)
 
 
-    this.renderer = new THREE.WebGLRenderer({
+    this.renderer = new THREE.WebGPURenderer({
       antialias: true,
       logarithmicDepthBuffer: true,
     })
